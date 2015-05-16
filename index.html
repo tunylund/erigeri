@@ -1,6 +1,62 @@
 <!doctype html>
 <html>
-<head></head>
+<head>
+  <title>IT+</title>
+  <style>
+    body { font-family: fantasy; }
+    .hud { display: flex; position: absolute; left: 0; right: 0; top: 0; max-width: 704px; margin: .25em auto;}
+    .hud-a, .hud-b, .hud-c { flex: 1 100%; border-bottom: solid 2px #fff; }
+    .hud-a { border-color: #f07900; }
+    .hud-b { border-color: #69f; }
+    .hud-c { border-color: #4d5; }
+    .score { 
+      border-radius: 50%; 
+      border-color: transparent; 
+      border-width: 1em; 
+      border-style: solid;
+      display: inline-block; 
+      vertical-align: middle;
+      margin-right: .4em;
+      position: relative;
+      -webkit-transition: all 350ms;
+      transition: all 350ms; }
+    .score-a { border-color: #f07900; }
+    .score-b { border-color: #69f; }
+    .score-c { border-color: #4d5; }
+    .score-0 { border-color: transparent; }
+    .score-1 { border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent; }
+    .score-2 { border-bottom-color: transparent; border-left-color: transparent; }
+    .score-3 { border-left-color: transparent; }
+
+    @-webkit-keyframes fadedown {
+      0% { top: 0; opacity: 1; width: 1em; }
+      100% { top: 5em; opacity: 0; width: 5em; left: -2.5em; }
+    }
+    .score-1:after, .score-2:before, .score-3:after, .score-4:after {
+      -webkit-animation: fadedown 1s;
+      animation: fadedown;
+      content: '';
+      position: absolute;
+      display: block;
+      border-bottom: solid 4px black;
+      opacity: 0; 
+      left: -.5em;
+      top: 0em;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+    }
+    .judgement {
+      position: absolute;
+      top: 18em;
+      width: 20em;
+      margin: auto;
+      color: #000;
+      left: 0;
+      right: 0;
+    }
+  </style>
+</head>
 <body>
 <script src='/bower_components/underscore/underscore.js'></script>
 <script src='http://cdn.html5quintus.com/v0.2.0/quintus-all.js'></script>
