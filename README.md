@@ -1,2 +1,2 @@
 # erigeri
-erigeri kicking game
+erigeri kicking game. http://tunylund.github.io/erigeri
