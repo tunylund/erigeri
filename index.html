@@ -5,7 +5,15 @@
   <style>
     html, body {margin: 0; padding: 0;}
     body { font-family: papyrus, fantasy, sans-serif; }
-    .hud { display: -webkit-flex; display: flex; position: absolute; left: 0; right: 0; top: 0; max-width: 608px; margin: auto; background: #fff; padding: 1em 1em .2em; }
+    .hud { 
+      display: -webkit-flex; 
+      display: flex; 
+      position: absolute; 
+      left: 0; right: 0; top: 50%; 
+      max-width: 608px; 
+      margin: -18em auto; 
+      background: #fff; 
+      padding: 2em 1em .2em; }
     .hud-a, .hud-b, .hud-c { -webkit-flex:1 100%; flex: 1 100%; border-bottom: solid 2px #fff; }
     .hud-a { border-color: #f07900; }
     .hud-b { border-color: #69f; }
@@ -53,18 +61,25 @@
     }
     .judgement {
       position: absolute;
-      top: 15em;
+      top: 50%;
       width: 20em;
-      margin: auto;
+      margin: -3em auto;
       color: #000;
       left: 0;
       right: 0;
     }
+    .instructions {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+      margin-top: 10em;
+    }
   </style>
 </head>
 <body>
-  <div id="loader" style="position: absolute; left:0; right:0; text-align: center; top: 12em;">loading...</div>
-  <div style="position: absolute; top: 27em; width: 100%; text-align: center;">
+  <div id="loader" style="position: absolute; left:0; right:0; text-align: center; top: 50%;">loading...</div>
+  <div class="instructions">
     Arrows (move), Z (attack), X (turn), M (mute)<br>
     Hit <b>1</b> for a one on one game<br>
     Hit <b>2</b> for a two on one game<br>
