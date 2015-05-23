@@ -75,6 +75,23 @@
       text-align: center;
       margin-top: 10em;
     }
+    #scoreboard {
+      position: absolute;
+      left: -10em;
+      opacity: 0;
+      max-width: 25%;
+      height: 21em;
+      top: 8.4em;
+      list-style-type: decimal;
+      transition: all 250ms;
+      z-index: 10;
+      background: rgba(255,255,255,.9);
+      padding: 1em 1em 1em 3em;
+    }
+    #scoreboard.open {
+      left: 0;
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -86,6 +103,7 @@
     <br>
     <small>Might work on chrome and fox, good luck if you're on safari. Mobile? forget about it.</small>
   </div>
+  <ul id="scoreboard"></ul>
 <script src='bower_components/underscore/underscore.js'></script>
 <script src='bower_components/quintus/quintus-all.js'></script>
 <script src="dist/bundle.js"></script>
