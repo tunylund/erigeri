@@ -1,121 +1,117 @@
 <!doctype html>
 <html>
-<head>
-  <title>IT+</title>
-  <style>
-    html, body {margin: 0; padding: 0;}
-    body { font-family: papyrus, fantasy, sans-serif; }
-    .hud { 
-      display: -webkit-flex; 
-      display: flex; 
-      position: absolute; 
-      left: 0; right: 0; top: 50%; 
-      max-width: 608px; 
-      margin: -18em auto; 
-      background: #fff; 
-      padding: 2em 1em .2em; }
-    .hud-a, .hud-b, .hud-c { -webkit-flex:1 100%; flex: 1 100%; border-bottom: solid 2px #fff; }
-    .hud-a { border-color: #f07900; }
-    .hud-b { border-color: #69f; }
-    .hud-c { border-color: #4d5; }
-    .score { 
-      border-radius: 50%; 
-      border-color: transparent; 
-      border-width: 1em; 
-      border-style: solid;
-      display: inline-block; 
-      vertical-align: middle;
-      margin-right: .4em;
-      position: relative;
-      -webkit-transition: all 350ms;
-      transition: all 350ms; }
-    .score-a { border-color: #f07900; }
-    .score-b { border-color: #69f; }
-    .score-c { border-color: #4d5; }
-    .score-0 { border-color: transparent; }
-    .score-1 { border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent; }
-    .score-2 { border-bottom-color: transparent; border-left-color: transparent; }
-    .score-3 { border-left-color: transparent; }
+  <head>
+    <title>IT+</title>
+    <style>
+      html, body {margin: 0; padding: 0;}
+      body { font-family: papyrus, fantasy, sans-serif; }
+      .hud { 
+        display: -webkit-flex; 
+        display: flex; 
+        position: absolute; 
+        left: 0; right: 0; top: 50%; 
+        max-width: 608px; 
+        margin: -18em auto; 
+        background: #fff; 
+        padding: 2em 1em .2em; }
+      .hud-a, .hud-b, .hud-c { -webkit-flex:1 100%; flex: 1 100%; border-bottom: solid 2px #fff; }
+      .hud-a { border-color: #f07900; }
+      .hud-b { border-color: #69f; }
+      .hud-c { border-color: #4d5; }
+      .score { 
+        border-radius: 50%; 
+        border-color: transparent; 
+        border-width: 1em; 
+        border-style: solid;
+        display: inline-block; 
+        vertical-align: middle;
+        margin-right: .4em;
+        position: relative;
+        -webkit-transition: all 350ms;
+        transition: all 350ms; }
+      .score-a { border-color: #f07900; }
+      .score-b { border-color: #69f; }
+      .score-c { border-color: #4d5; }
+      .score-0 { border-color: transparent; }
+      .score-1 { border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent; }
+      .score-2 { border-bottom-color: transparent; border-left-color: transparent; }
+      .score-3 { border-left-color: transparent; }
 
-    @-webkit-keyframes fadedown {
-      0% { top: 0; opacity: 1; width: 1em; }
-      100% { top: 5em; opacity: 0; width: 5em; left: -2.5em; }
-    }
-    @keyframes fadedown {
-      0% { top: 0; opacity: 1; width: 1em; }
-      100% { top: 5em; opacity: 0; width: 5em; left: -2.5em; }
-    }
-    .score-1:after, .score-2:before, .score-3:after, .score-4:after {
-      -webkit-animation: fadedown 1s;
-      animation: fadedown;
-      content: '';
-      position: absolute;
-      display: block;
-      border-bottom: solid 4px black;
-      opacity: 0; 
-      left: -.5em;
-      top: 0em;
-      width: 1em;
-      height: 1em;
-      border-radius: 50%;
-    }
-    .judgement {
-      position: absolute;
-      top: 50%;
-      width: 20em;
-      margin: -3em auto;
-      color: #000;
-      left: 0;
-      right: 0;
-    }
-    .instructions {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      text-align: center;
-      margin-top: 10em;
-    }
-    #scoreboard {
-      position: absolute;
-      left: -10em;
-      opacity: 0;
-      max-width: 25%;
-      height: 21em;
-      top: 8.4em;
-      list-style-type: decimal;
-      transition: all 250ms;
-      z-index: 10;
-      background: rgba(255,255,255,.9);
-      padding: 1em 1em 1em 3em;
-    }
-    #scoreboard.open {
-      left: 0;
-      opacity: 1;
-    }
-  </style>
-</head>
-<body>
-  <div id="loader" style="position: absolute; left:0; right:0; text-align: center; top: 50%;">loading...</div>
-  <div class="instructions">
-    Arrows (move), Z+arrow (attack), X (turn), M (mute)<br>
-    Hit <b>1</b> for a one on one game<br>
-    Hit <b>2</b> for a two on one game<br>
-    <br>
-    <small>Might work on chrome and fox, good luck if you're on safari. Mobile? forget about it.</small>
-  </div>
-  <ul id="scoreboard"></ul>
-<script src='bower_components/underscore/underscore.js'></script>
-<script src='bower_components/quintus/quintus-all.js'></script>
-<script src="dist/bundle.js"></script>
-<script>
-  if(window.location.host.indexOf('localhost') == -1) {
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-805443-9', 'auto');
-    ga('send', 'pageview');
-  }
-</script>
-</body>
-<html>
+      @-webkit-keyframes fadedown {
+        0% { top: 0; opacity: 1; width: 1em; }
+        100% { top: 5em; opacity: 0; width: 5em; left: -2.5em; }
+      }
+      @keyframes fadedown {
+        0% { top: 0; opacity: 1; width: 1em; }
+        100% { top: 5em; opacity: 0; width: 5em; left: -2.5em; }
+      }
+      .score-1:after, .score-2:before, .score-3:after, .score-4:after {
+        -webkit-animation: fadedown 1s;
+        animation: fadedown;
+        content: '';
+        position: absolute;
+        display: block;
+        border-bottom: solid 4px black;
+        opacity: 0; 
+        left: -.5em;
+        top: 0em;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+      }
+      .judgement {
+        position: absolute;
+        top: 50%;
+        width: 20em;
+        margin: -3em auto;
+        color: #000;
+        left: 0;
+        right: 0;
+      }
+      .instructions {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        margin-top: 10em;
+      }
+      #scoreboard {
+        position: absolute;
+        left: -10em;
+        opacity: 0;
+        max-width: 25%;
+        height: 21em;
+        top: 8.4em;
+        list-style-type: decimal;
+        transition: all 250ms;
+        z-index: 10;
+        background: rgba(255,255,255,.9);
+        padding: 1em 1em 1em 3em;
+      }
+      #scoreboard.open {
+        left: 0;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loader" style="position: absolute; left:0; right:0; text-align: center; top: 50%;">loading...</div>
+    <div class="instructions">
+      Arrows (move), Z+arrow (attack), X (turn), M (mute)<br>
+      Hit <b>1</b> for a one on one game<br>
+      Hit <b>2</b> for a two on one game<br>
+      <br>
+      <small>Might work on chrome and fox, good luck if you're on safari. Mobile? forget about it.</small>
+    </div>
+    <ul id="scoreboard"></ul>
+    <script src='bower_components/quintus/quintus-all.js'></script>
+    <script type="module" src="lib/main.mjs"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-805443-9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag(){dataLayer.push(arguments)}
+      gtag('js', new Date())
+      gtag('config', 'UA-805443-9')
+    </script>
+  </body>
+</html>
